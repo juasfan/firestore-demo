@@ -1,0 +1,24 @@
+<app-add-item></app-add-item>
+
+<div class="card" *ngFor="let item of items">
+  <div class="name">Name: {{ item.name }}</div>
+  <div class="price">Price: RM{{ item.price }}</div>
+  <div class="btn-container">
+    <div class="edit" (click)="edit(item)">edit</div>
+    <div class="close" (click)="close()">close</div>
+    <div class="delete" (click)="delete(item)">delete</div>
+  </div>
+  <div *ngIf="selectedItem === item">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(item)">
+      <div>
+        <div>Product name</div>
+        <input type="text" formControlName="name" />
+      </div>
+      <div>
+        <div>Price(RM)</div>
+        <input type="number" formControlName="price" />
+      </div>
+      <button type="submit" [value]="item">Submit</button>
+    </form>
+  </div>
+</div>
